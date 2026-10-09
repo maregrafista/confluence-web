@@ -1,5 +1,5 @@
 // Confluence · service worker (gerado por build_site.py). Abre sem internet; com internet busca a versão nova.
-const CACHE = 'confluence-6.16.2-alpha.4-05082019919b8350';
+const CACHE = 'confluence-6.17.0-alpha.4-05082019919b8350';
 const BASE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './favicon-32.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('confluence-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
